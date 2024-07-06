@@ -84,8 +84,8 @@
             background-color: #00bfff;
         }
         .alert {
-            display: none; /* Initially hide the success message */
-            margin-top: 20px;
+            display: none; /* Initially hide the success messages */
+            margin-top: 10px;
             padding: 10px;
             background-color: #4CAF50; /* Green background */
             color: white; /* White text */
@@ -93,28 +93,29 @@
         }
     </style>
     <script>
-        function showSuccessMessage() {
-            var successMessage = document.getElementById('success-message');
+        function showSuccessMessage(inputId) {
+            var successMessage = document.getElementById(inputId + '-success-message');
             successMessage.style.display = 'block'; // Display the success message
-            successMessage.innerText = 'Reports are being generated and will be downloaded shortly!';
         }
     </script>
 </head>
 <body>
     <div class="container mt-5">
         <h1>Spreadsheet 2 Reports</h1>
-        <form method="POST" action="{{ url_for('generate') }}" enctype="multipart/form-data" onsubmit="showSuccessMessage()">
+        <form method="POST" action="{{ url_for('generate') }}" enctype="multipart/form-data">
             <div class="upload-section">
                 <label for="data_file" class="upload-labels">Upload Spreadsheet</label>
-                <input type="file" class="form-control" id="data_file" name="data_file" accept=".csv,.xlsx" required>
+                <input type="file" class="form-control" id="data_file" name="data_file" accept=".csv,.xlsx" required onchange="showSuccessMessage('data_file')">
+                <div id="data_file-success-message" class="alert">Spreadsheet uploaded successfully!</div>
             </div>
             <div class="upload-section">
                 <label for="template_file" class="upload-labels">Upload Report Template</label>
-                <input type="file" class="form-control" id="template_file" name="template_file" accept=".docx,.doc" required>
+                <input type="file" class="form-control" id="template_file" name="template_file" accept=".docx,.doc" required onchange="showSuccessMessage('template_file')">
+                <div id="template_file-success-message" class="alert">Report template uploaded successfully!</div>
             </div>
-            <button type="submit" class="btn btn-primary">Generate Reports</button>
+            <button type="submit" class="btn btn-primary" onclick="showSuccessMessage('form')">Generate Reports</button>
+            <div id="form-success-message" class="alert">Reports are being generated and will be downloaded shortly!</div>
         </form>
-        <div id="success-message" class="alert"></div>
     </div>
 </body>
 </html>
