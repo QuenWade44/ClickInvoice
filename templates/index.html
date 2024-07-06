@@ -19,6 +19,27 @@
     </script>
     <title>Spreadsheet 2 Reports</title>
     <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-color: black;
+            color: white; /* Text color for the body */
+            font-family: Arial, sans-serif; /* Choose your preferred font */
+        }
+        h1 {
+            font-size: 3em;
+            text-align: center;
+        }
+        .container {
+            text-align: center;
+        }
+        .upload-section {
+            margin-bottom: 20px;
+        }
         label {
             display: block;
             width: 60vw;
@@ -31,7 +52,7 @@
             text-align: center;
         }
         label:hover {
-            background-color: cornflowerblue;   
+            background-color: cornflowerblue;
         }
         label:active {
             background-color: mediumaquamarine;
@@ -45,15 +66,6 @@
             padding: 0;
             position: absolute;
             width: 1px;
-        }
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            background-color: black;
         }
         button {
             padding: 12px 20px; 
@@ -71,21 +83,21 @@
         button:hover {
             background-color: #00bfff;
         }
-        h1 {
-            color: white;
-            font-size: 3em; /* Adjust the size as needed */
-            text-align: center;
-        }
-        .upload-section {
-            margin-bottom: 20px; /* Add spacing between upload sections */
+        .alert {
+            display: none; /* Initially hide the success message */
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            border-radius: 5px;
         }
     </style>
     <script>
         function showSuccessMessage() {
             var successMessage = document.getElementById('success-message');
+            successMessage.style.display = 'block'; // Display the success message
             successMessage.innerText = 'Reports are being generated and will be downloaded shortly!';
-            successMessage.style.display = 'block';  // This should make the message visible
-}
+        }
     </script>
 </head>
 <body>
@@ -102,7 +114,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Generate Reports</button>
         </form>
-       <div id="success-message" class="alert alert-success mt-3"></div>
+        <div id="success-message" class="alert"></div>
     </div>
 </body>
 </html>
