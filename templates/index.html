@@ -82,9 +82,10 @@
     </style>
     <script>
         function showSuccessMessage() {
-            document.getElementById('success-message').style.display = 'block';
-            document.getElementById('success-message').innerText = 'Reports are being generated and will be downloaded shortly!';
-        }
+            var successMessage = document.getElementById('success-message');
+            successMessage.innerText = 'Reports are being generated and will be downloaded shortly!';
+            successMessage.style.display = 'block';  // This should make the message visible
+}
     </script>
 </head>
 <body>
@@ -101,7 +102,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Generate Reports</button>
         </form>
-        <div id="success-message" class="alert alert-success mt-3" style="display: none;"></div>
+       <div id="success-message" class="alert alert-success mt-3"></div>
     </div>
 </body>
 </html>
