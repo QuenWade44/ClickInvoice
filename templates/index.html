@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='icons/icon_144x144.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='icons/icon_144x144.png') }}" type="image/png">
+    <link rel="manifest" href="{{ url_for('serve_manifest') }}">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register("{{ url_for('serve_sw') }}").then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+    <title>Spreadsheet 2 Reports</title>
+    <style>
+        label {
+            display: block;
+            width: 60vw;
+            max-width: 300px;
+            margin: 0 auto;
+            background-color: slateblue;
+            border-radius: 2px;
+            font-size: 1em;
+            line-height: 2.5em;
+            text-align: center;
+        }
+        label:hover {
+            background-color: cornflowerblue;   
+        }
+        label:active {
+            background-color: mediumaquamarine;
+        }
+        input {
+            border: 0;
+            clip: rect(1px, 1px, 1px, 1px);
+            height: 1px; 
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-color: black;
+        }
+        button {
+            padding: 12px 20px; 
+            background-color: aqua;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: 100%; 
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold; 
+        }
+        button:hover {
+            background-color: #00bfff;
+        }
+        h1 {
+            color: white;
+            font-size: 3em; /* Adjust the size as needed */
+            text-align: center;
+        }
+        .upload-section {
+            margin-bottom: 20px; /* Add spacing between upload sections */
+        }
+    </style>
+    <script>
+        function showSuccessMessage() {
+            document.getElementById('success-message').style.display = 'block';
+            document.getElementById('success-message').innerText = 'Reports are being generated and will be downloaded shortly!';
+        }
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Spreadsheet 2 Reports</h1>
+        <form method="POST" action="{{ url_for('generate') }}" enctype="multipart/form-data" onsubmit="showSuccessMessage()">
+            <div class="upload-section">
+                <label for="data_file" class="upload-labels">Upload Spreadsheet</label>
+                <input type="file" class="form-control" id="data_file" name="data_file" accept=".csv,.xlsx" required>
+            </div>
+            <div class="upload-section">
+                <label for="template_file" class="upload-labels">Upload Report Template</label>
+                <input type="file" class="form-control" id="template_file" name="template_file" accept=".docx,.doc" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Generate Reports</button>
+        </form>
+        <div id="success-message" class="alert alert-success mt-3" style="display: none;"></div>
+    </div>
+</body>
+</html>
