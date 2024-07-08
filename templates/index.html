@@ -17,7 +17,7 @@
             });
         }
     </script>
-    <title>Spreadsheet 2 Reports</title>
+    <title>Psych Report Assistant</title>
     <style>
         body {
             display: flex;
@@ -101,10 +101,10 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1>Spreadsheet 2 Reports</h1>
+        <h1>Psych Report Assistant</h1>
         <form method="POST" action="{{ url_for('generate') }}" enctype="multipart/form-data">
             <div class="upload-section">
-                <label for="data_file" class="upload-labels">Upload Spreadsheet</label>
+                <label for="data_file" class="upload-labels">Upload Q-Global Export Assessment Record</label>
                 <input type="file" class="form-control" id="data_file" name="data_file" accept=".csv,.xlsx" required onchange="showSuccessMessage('data_file')">
                 <div id="data_file-success-message" class="alert">Spreadsheet uploaded successfully!</div>
             </div>
