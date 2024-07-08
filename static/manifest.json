@@ -1,6 +1,6 @@
 {
-  "name": "Spreadsheet 2 Reports",
-  "short_name": "S2R",
+  "name": "Psych Report Assistant",
+  "short_name": "Psych Report Assistant",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -37,7 +37,7 @@
       "form_factor": "narrow"
     }
   ],
-  "description": "Application for converting spreadsheet row data in to reports.",
+  "description": "Application for converting Q-Global Export Assessment Records in to psych reports.",
   "orientation": "any",
   "categories": [
     "productivity",
