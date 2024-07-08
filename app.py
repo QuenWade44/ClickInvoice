@@ -95,5 +95,3 @@ def serve_sw():
         app.logger.error(f"Error serving sw.js: {e}")
         return str(e), 500  # Return error message and HTTP status 500 for internal server error
 
-if __name__ == '__main__':
-     app.run(host='0.0.0.0', port=5000)
