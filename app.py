@@ -38,7 +38,7 @@ def generate_reports(data_file, template_file):
 
     # Create a folder in the Downloads directory to store reports
     downloads_folder = get_downloads_folder()
-    reports_folder = os.path.join(downloads_folder, 'reports')
+    reports_folder = os.path.join(downloads_folder, 'invoices')
     os.makedirs(reports_folder, exist_ok=True)
 
     # Iterate through data rows and generate reports
@@ -46,11 +46,11 @@ def generate_reports(data_file, template_file):
         data = row.to_dict()
         data['TODAY'] = today_date
         doc.render(data)
-        report_filename = os.path.join(reports_folder, f"report_{index}.docx")
+        report_filename = os.path.join(reports_folder, f"invoices_{index}.docx")
         doc.save(report_filename)
 
     # Zip the reports folder
-    zip_filename = os.path.join(downloads_folder, 'reports.zip')
+    zip_filename = os.path.join(downloads_folder, 'invoices.zip')
     with zipfile.ZipFile(zip_filename, 'w') as zipf:
         for root, _, files in os.walk(reports_folder):
             for file in files:
@@ -72,7 +72,7 @@ def generate():
     data_file = request.files['data_file']
     template_file = request.files['template_file']
     try:
-        zip_filename = generate_reports(data_file, template_file)
+        zip_filename = generate_invoices(data_file, template_file)
         return send_file(zip_filename, as_attachment=True)
     except Exception as e:
         return str(e), 500
