@@ -17,7 +17,7 @@
             });
         }
     </script>
-    <title>Psych Report Assistant</title>
+    <title>ClickInvoice</title>
     <style>
         body {
             display: flex;
@@ -101,20 +101,20 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1>Psych Report Assistant</h1>
+        <h1>ClickInvoice</h1>
         <form method="POST" action="{{ url_for('generate') }}" enctype="multipart/form-data">
             <div class="upload-section">
-                <label for="data_file" class="upload-labels">Upload Q-Global Export Assessment Record</label>
+                <label for="data_file" class="upload-labels">Upload Invoice Export/Spreadsheet</label>
                 <input type="file" class="form-control" id="data_file" name="data_file" accept=".csv,.xlsx" required onchange="showSuccessMessage('data_file')">
                 <div id="data_file-success-message" class="alert">Spreadsheet uploaded successfully!</div>
             </div>
             <div class="upload-section">
-                <label for="template_file" class="upload-labels">Upload Report Template</label>
+                <label for="template_file" class="upload-labels">Upload Invoice Template</label>
                 <input type="file" class="form-control" id="template_file" name="template_file" accept=".docx,.doc" required onchange="showSuccessMessage('template_file')">
-                <div id="template_file-success-message" class="alert">Report template uploaded successfully!</div>
+                <div id="template_file-success-message" class="alert">Invoice template uploaded successfully!</div>
             </div>
             <button type="submit" class="btn btn-primary" onclick="showSuccessMessage('form')">Generate Reports</button>
-            <div id="form-success-message" class="alert">Reports are being generated and will be downloaded shortly!</div>
+            <div id="form-success-message" class="alert">Invoices are being generated and will be downloaded shortly!</div>
         </form>
     </div>
 </body>
